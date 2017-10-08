@@ -14,7 +14,7 @@ class NewVisitorTest(TestCase):
 	def test_start_list_and_retrieve_it(self):
 		self.browser.get('http://localhost:8000')
 		
-		self.assertIn('To Do' in self.browser.title)
+		self.assertIn('To-Do', self.browser.title)
 		self.fail('finish the test')
 
 if __name__ == '__main__':
