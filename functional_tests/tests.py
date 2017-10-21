@@ -31,9 +31,13 @@ class NewVisitorTest(LiveServerTestCase):
 			'Enter a to-do item',
 		)
 
+		#list entered for first user, first URL created
 		inputbox.send_keys('Buy peacock feathers')
-
 		inputbox.send_keys(Keys.ENTER)
+		first_list_url = self.browser.current_url
+
+		#calls helper function from unittest to check whether string matches regex
+		self.assertRegex(first_list_url, 'lists/.+')
 		time.sleep(1)
 		self.check_for_row_in_list_table('1: Buy peacock feathers')
 
@@ -42,9 +46,37 @@ class NewVisitorTest(LiveServerTestCase):
 		inputbox.send_keys(Keys.ENTER)
 		time.sleep(1)
 
+		#checks items are displayed in list
 		self.check_for_row_in_list_table('2: Use peacock feathers to make a fly')
 		self.check_for_row_in_list_table('1: Buy peacock feathers')
-		
+
+		#checking new user sees fresh page
+		#resets cookies etc
+		self.browser.quit()
+		self.browser = webdriver.Firefox()
+
+		#test to see if list not left over from previous user
+		self.browser.get(self.live_server_url)
+		page_text = self.browser.find_elements_by_tag_name('body').text
+		self.assertNotIn('Buy peacock feathers', page_text)
+		self.assertNotIn('make a fly', page_text)
+
+		#create new list in 2nd URL
+		inputbox = self.browser.find_element_by_id('id_new_item')
+		inputbox.send_keys('buy milk')
+		inputbox.send_keys(keys.ENTER)
+		second_list_url = self.browser.current_url
+		self.assertRegex(second_list_url, '/lists/.+')
+
+		#check the two created URLs are not the same
+		self.assertNotEqual(first_list_url, second_list_url)
+
+		#first list still not around
+		page_text = self.browser.find_elements_by_tag_name('body').text
+		self.assertNotIn('Buy peacock feathers', page_text)
+		self.assertIn('Buy milk', page_text)
+
+		#tests not finished yet
 		self.fail('finish the test')
 
 
