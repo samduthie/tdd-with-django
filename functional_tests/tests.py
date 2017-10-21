@@ -34,11 +34,12 @@ class NewVisitorTest(LiveServerTestCase):
 		#list entered for first user, first URL created
 		inputbox.send_keys('Buy peacock feathers')
 		inputbox.send_keys(Keys.ENTER)
-		first_list_url = self.browser.current_url
-
-		#calls helper function from unittest to check whether string matches regex
-		self.assertRegex(first_list_url, 'lists/.+')
 		time.sleep(1)
+		
+		#calls helper function from unittest to check whether string matches regex
+		first_list_url = self.browser.current_url
+		self.assertRegex(first_list_url, '/lists/.+')
+		
 		self.check_for_row_in_list_table('1: Buy peacock feathers')
 
 		inputbox = self.browser.find_element_by_id('id_new_item')
@@ -57,14 +58,15 @@ class NewVisitorTest(LiveServerTestCase):
 
 		#test to see if list not left over from previous user
 		self.browser.get(self.live_server_url)
-		page_text = self.browser.find_elements_by_tag_name('body').text
+		page_text = self.browser.find_element_by_tag_name('body').text
 		self.assertNotIn('Buy peacock feathers', page_text)
 		self.assertNotIn('make a fly', page_text)
 
 		#create new list in 2nd URL
 		inputbox = self.browser.find_element_by_id('id_new_item')
 		inputbox.send_keys('buy milk')
-		inputbox.send_keys(keys.ENTER)
+		inputbox.send_keys(Keys.ENTER)
+		time.sleep(1)
 		second_list_url = self.browser.current_url
 		self.assertRegex(second_list_url, '/lists/.+')
 
@@ -72,7 +74,7 @@ class NewVisitorTest(LiveServerTestCase):
 		self.assertNotEqual(first_list_url, second_list_url)
 
 		#first list still not around
-		page_text = self.browser.find_elements_by_tag_name('body').text
+		page_text = self.browser.find_element_by_tag_name('body').text
 		self.assertNotIn('Buy peacock feathers', page_text)
 		self.assertIn('Buy milk', page_text)
 
