@@ -1,0 +1,158 @@
+    1  cd sites/
+    2  ls
+    3  cd www-tdd/
+    4  ls
+    5  cd source/
+    6  ls
+    7  vim superlists/settings.py 
+    8  history
+    9  service restart gunicorn
+   10  sudo service nginx restart
+   11  sudo service gunicorn restart
+   12  vim /etc/init/gunicorn-superlists
+   13  ls /tmp/
+   14  sudo vim /etc/init/gunicorn-superlists
+   15  mv /etc/init/gunicorn-superlists /etc/init/gunicorn-superlists.conf
+   16  sudo mv /etc/init/gunicorn-superlists /etc/init/gunicorn-superlists.conf
+   17  sudo start gunicorn-superlists
+   18  ls /etc/init
+   19  sudo start
+   20  reboot
+   21  sudo reboot
+   22  ls
+   23  cd sites/
+   24  ls
+   25  cd staging-tdd/
+   26  ls
+   27  cd ..
+   28  cd www-tdd/
+   29  ls
+   30  cd source/
+   31  ls
+   32  ../virtualenv/bin/gunicorn superlists.wsgi:application
+   33  ../virtualenv/bin/python3 manage.py collectstatic --noinput
+   34  ls ../static/
+   35  vim /etc/nginx/sites-available/superlists-staging
+   36  sudo vim /etc/nginx/sites-available/superlists-staging
+   37  sudo service nginx reload
+   38  ../virtualenv/bin/gunicorn superlists.wsgi:application
+   39  sudo vim /etc/nginx/sites-available/superlists-staging
+   40  ../virtualenv/bin/gunicorn --bind unix:/tmp/superlists.socket superlists.wsgi.application
+   41  ../virtualenv/bin/gunicorn --bind unix:/tmp/superlists.socket superlists.wsgi:application
+   42  sudo service nginx reload
+   43  ../virtualenv/bin/gunicorn --bind unix:/tmp/superlists.socket superlists.wsgi:application
+   44  sudo apt-get install nginx
+   45  sudo service nginx start
+   46  python --version
+   47  sudo apt-get install git python3 python3-pip
+   48  sudo apt-get install git python3
+   49  sudo pip3 
+   50  apt-get install python3-pip
+   51  sudo apt-get install python3-pip
+   52  pip
+   53  apt-get install python-pip
+   54  sudo apt-get install python-pip
+   55  sudo apt-get install python3-pip
+   56  pip3
+   57  #sudo apt install python3-pip
+   58  sudo apt install python3-pip
+   59  sudo apt-get update
+   60  sudo apt install python3-pip
+   61  ls
+   62  pwd
+   63  mkdir sites
+   64  cd sites
+   65  mkdir www-tdd
+   66  cd www-tdd/
+   67  cd..
+   68  cd ..
+   69  mkdir staging-tdd
+   70  ls
+   71  cd www-tdd/
+   72  ls
+   73  mkdir database
+   74  mkdir static
+   75  mkdir virtualenv
+   76  mkdir source
+   77  cd source/
+   78  git clone https://github.com/samduthie/tdd-with-django.git
+   79  ls
+   80  rm tdd-with-django/ -rm
+   81  rm tdd-with-django/ --rm
+   82  rm tdd-with-django/ -r
+   83  ls
+   84  https://github.com/samduthie/tdd-with-django.git .
+   85  cd ..
+   86  git clone https://github.com/samduthie/tdd-with-django.git \ ./source
+   87  cd source/
+   88  ls
+   89  cd ..
+   90  ls
+   91  cd .
+   92  ls
+   93  cd ./
+   94  ls
+   95  cd ./source/
+   96  ls
+   97  cd ..
+   98  ls
+   99  cd .
+  100  ls
+  101  cd source/
+  102  git clone https://github.com/samduthie/tdd-with-django.git .
+  103  ls
+  104  pip3 install virtualenv
+  105  virtualenv --python=python3 ../virtualenv/
+  106  ls ../virtualenv/
+  107  which python3
+  108  source ../virtualenv/bin/activate
+  109  which python
+  110  which python3
+  111  pip install django==1.8
+  112  python3 manage.py test lists
+  113  pip freeze > requirements.txt
+  114  cat requirements.txt 
+  115  git add requirements.txt 
+  116  git commit -m "Add requirements for virtualenv"
+  117  git config --global user.email "samduthie@gmail.com"
+  118  git config --global user.name "Sam Duthie"
+  119  git commit -m "Add requirements for virtualenv"
+  120  git push
+  121  vim /etc/nginx/sites-available/superlists-staging
+  122  sudo vim /etc/nginx/sites-available/superlists-staging
+  123  sudo rm /etc/nginx/sites-available/default 
+  124  sudo service nginx reload
+  125  ../virtualenv/bin/python3 manage.py runserver
+  126  sudo service nginx reload
+  127  ls /etc/nginx/sites-enabled/
+  128  vim /etc/nginx/sites-available/superlists-staging
+  129  ls /etc/nginx/sites-enabled/
+  130  vim /etc/nginx/sites-available/superlists-staging
+  131  ls -l /etc/nginx/sites-enabled/
+  132  sudo ln -s /etc/nginx/sites-available/superlists-staging /etc/nginx/sites-enabled/superlists-staging
+  133  ls -l /etc/nginx/sites-enabled/
+  134  sudo service nginx reload
+  135  vim /etc/nginx/sites-available/superlists-staging
+  136  journalctl -xe
+  137  sudo journalctl -xe
+  138  ls -l /etc/nginx/sites-enabled/
+  139  vim /etc/nginx/sites-enabled/superlists-staging 
+  140  sudo vim /etc/nginx/sites-enabled/superlists-staging 
+  141  sudo service nginx reload
+  142  ../virtualenv/bin/python3 manage.py runserver
+  143  ../virtualenv/bin/python3 manage.py migrate --noinput
+  144  ../virtualenv/bin/python3 manage.py runserver
+  145  ../virtualenv/bin/pip install gunicorn
+  146  cd sites/178.62.91.88/
+  147  ls
+  148  cd source/
+  149  ls
+  150  cd superlists/
+  151  ls
+  152  vim settings.py
+  153  cd sites/178.62.91.88/
+  154  ls
+  155  cd source/
+  156  ls
+  157  cd deploy-tools/
+  158  history >> history.log
