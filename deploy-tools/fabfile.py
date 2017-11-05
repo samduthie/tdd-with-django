@@ -10,7 +10,7 @@ def provision():
         run('useradd -m -s /bin/bash sam')
         run('usermod -a -G sudo sam')
         run('passwd sam')
-        run('sudu su sam')
+        run('sudo su sam')
 
     run('sudo apt-get update')
     run('sudo apt-get install nginx git python3 python3-pip')
