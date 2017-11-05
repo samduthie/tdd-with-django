@@ -2,7 +2,6 @@ from fabric.contrib.files import append, exists, sed
 from fabric.api import env, local, run
 
 import random
-import time
 
 REPO_URL = 'https://github.com/samduthie/tdd-with-django.git'
 
@@ -63,6 +62,3 @@ def _update_database(site_folder, source_folder):
 		run('#mkdir -p %s/%s' % (site_folder, 'database'))
 		run('#mv  %s %s' % (database_file, database_folder))
 		
-	run('cd %s && ../virtualenv/bin/python3 manage.py migrate --noinput' % (
-		source_folder,
-		))
