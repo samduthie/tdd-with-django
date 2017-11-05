@@ -17,7 +17,7 @@ def provision():
     run('sudo pip3 install virtualenv')
     print("provision completed...")
    
-   if _query("deploy server? "):
+    if _query("deploy server? "):
         print("deployment started...")
         deploy()
         print("deployment finished...")
