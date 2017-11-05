@@ -5,6 +5,24 @@ import random
 
 REPO_URL = 'https://github.com/samduthie/tdd-with-django.git'
 
+def provision():
+    if not (exists('/home/sam')):
+        run('useradd -m -s /bin/bash sam')
+        run('usermod -a -G sudo sam')
+        run('passwd sam')
+        run('sudu su sam')
+
+    run('sudo apt-get update')
+    run('sudo apt-get install nginx git python3 python3-pip')
+    run('sudo pip3 install virtualenv')
+    print("provision completed...")
+   
+   if _query("deploy server? "):
+        print("deployment started...")
+        deploy()
+        print("deployment finished...")
+    print("provision finished")
+
 def deploy():
 	site_folder = '/home/%s/sites/%s' % (env.user, env.host)
 	source_folder = site_folder + '/source'
@@ -14,7 +32,6 @@ def deploy():
 	_update_virtualenv(source_folder)
 	_update_static_files(source_folder)
 	_update_database(site_folder, source_folder)
-
 
 def _create_directory_structure_if_necessary(site_folder):
 	for subfolder in('database', 'static', 'virtualenv', 'source'):
@@ -58,7 +75,15 @@ def _update_static_files(source_folder):
 def _update_database(site_folder, source_folder):
 	database_folder = source_folder + '/../database'
 	database_file = 'db.sqlite3'
-	if not exists(database_folder + database_file):
+	if not (database_file):
 		run('#mkdir -p %s/%s' % (site_folder, 'database'))
 		run('#mv  %s %s' % (database_file, database_folder))
 		
+def _query(query):
+    answer = raw_input(query)
+    if answer is 'y' or answer is 'yes':
+        return True
+    if answer is 'n' or answer is 'no':
+        return False
+    print("Please only answer (y)es or (n)o")
+    _query(query)
