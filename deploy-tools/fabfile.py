@@ -11,7 +11,7 @@ def provision():
     with settings(prompts={'Do you want to continue? [Y/n]': 'Y'}):
 	    run('sudo apt-get update')
 	    run('sudo apt-get install nginx git python3 python3-pip')
-    run('sudo pip3 install virtualenv')
+	    run('sudo pip3 install virtualenv')
     print("provision completed...")
    
     if _query("deploy server? "):
@@ -129,7 +129,7 @@ def _create_user_config():
 	pass
 
 def _setup_jupyter():
-	if env.user is 'root':
+	if env.user == 'root':
 		folder = '%s' % env.user
 	else:
 		folder = 'home/%s' % env.user
@@ -152,18 +152,14 @@ def _setup_jupyter():
 			run("source ~/.bashrc")
 	else:
 		print("conda already installed")
-	# Follow instructions to complete install
+
 	if not (exists ('/%s/miniconda3/envs/py3' % (folder))):
 		run("./miniconda3/bin/conda create -n py3 python=3 ipython")
 	else:
 		print("py3 profile already set up")
 	# Activating created environment
 	run("source /%s/miniconda3/bin/activate py3" % (folder))
-	# Install package manager pip
-	#run("/root/miniconda3/bin/conda install pip")
-	# which ipython is to be used in the environment? pip freeze shows it
-	#run("pip freeze")
-	# Installing ipython notebook
+
 	with settings(prompts={' Proceed ([y]/n)?' : 'y'}):
 		run("/%s/miniconda3/bin/conda install jupyter" % (folder))
 		# Installing the packages
@@ -173,7 +169,7 @@ def _setup_jupyter():
 
 	if not (exists('/%s/jnotebooks' % env.user)):
 		run("git clone %s jnotebooks" % JNOTEBOOK_REPO_URL)
-		run("/%s/miniconda3/bin/conda/jupyter notebook --generate-config" % env.user)
+		run("/%s/miniconda3/bin/jupyter notebook --generate-config" % env.user)
 		
 	if _query("Start Jupyter Notebooks? "):
 		run("/%s/miniconda3/bin/conda/jupyter notebook --ip=0.0.0.0 --port=8080 --no-browser --allow-root &" % env.user)
