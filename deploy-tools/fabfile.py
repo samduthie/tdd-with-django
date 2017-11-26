@@ -10,8 +10,8 @@ def provision():
     #_create_user()
     with settings(prompts={'Do you want to continue? [Y/n]': 'Y'}):
 	    run('sudo apt-get update')
-	    run('sudo apt-get install nginx git python3 python3-pip')
-	    run('sudo pip3 install virtualenv')
+	    run('sudo apt-get install nginx git python3 python3-pip --assume-yes')
+	    run('sudo pip3 install virtualenv --assume-yes')
     print("provision completed...")
    
     if _query("deploy server? "):
@@ -161,11 +161,11 @@ def _setup_jupyter():
 	run("source /%s/miniconda3/bin/activate py3" % (folder))
 
 	with settings(prompts={' Proceed ([y]/n)?' : 'y'}):
-		run("/%s/miniconda3/bin/conda install jupyter" % (folder))
+		run("/%s/miniconda3/bin/conda install jupyter --assume-yes" % (folder))
 		# Installing the packages
-		run("/%s/miniconda3/bin/conda install numpy" % (folder))
-		run("/%s/miniconda3/bin/conda install pandas" % (folder))
-		run("/%s/miniconda3/bin/conda install matplotlib" % (folder))
+		run("/%s/miniconda3/bin/conda install numpy --assume-yes" % (folder))
+		run("/%s/miniconda3/bin/conda install pandas --assume-yes" % (folder))
+		run("/%s/miniconda3/bin/conda install matplotlib --assume-yes" % (folder))
 
 	if not (exists('/%s/jnotebooks' % env.user)):
 		run("git clone %s jnotebooks" % JNOTEBOOK_REPO_URL)
